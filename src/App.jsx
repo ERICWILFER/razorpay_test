@@ -2,7 +2,9 @@ import './App.css'
 import axios from "axios";
 
 const razorPayKeyId = "rzp_test_8nN58e8ffLtkXT";
-const accessToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUSEVfSVNTVUVSIiwiYXVkIjoiVEhFX0FVRElFTkNFIiwiaWF0IjoxNjkwNzIxMzYxLCJuYmYiOjE2OTA3MjEzNjEsImV4cCI6MTY5MDcyNDk2MSwiZGF0YSI6eyJ1c2VyaWQiOiJBQzVoTiIsInVzZXJ0eXBlIjoic3R1ZGVudCIsInVzZXJuYW1lIjoiU3R1ZGVudCA2NjYyNjQiLCJtb2JpbGUiOiI1NTU1NTU1NTU1Iiwicm9sZSI6InN1cGVyX2FkbWluIiwic2Nob29saWQiOiIifX0.TkbqxwkgWR0d8RLeZhVsbzgfjh0t6mrHYtWoBagZhzM"
+const accessToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUSEVfSVNTVUVSIiwiYXVkIjoiVEhFX0FVRElFTkNFIiwiaWF0IjoxNjkwOTk2NTI4LCJuYmYiOjE2OTA5OTY1MjgsImV4cCI6MTY5MTAwMDEyOCwiZGF0YSI6eyJ1c2VyaWQiOiJBQzVoTiIsInVzZXJ0eXBlIjoic3R1ZGVudCIsInVzZXJuYW1lIjoiU3R1ZGVudCA2NjYyNjQiLCJtb2JpbGUiOiI1NTU1NTU1NTU1Iiwicm9sZSI6InN1cGVyX2FkbWluIiwic2Nob29saWQiOiIifX0.Yh73EF3amYNShpqjGCbqMckm3c31yP91r1cn6ZLWHpg"
+const courseid = 6;
+const coursetype = "demo";
 
 export default function App() {
 
@@ -13,7 +15,7 @@ export default function App() {
         "http://localhost/multeartsapi/api/payment/verify-payment.php",
         data,
         {
-          Headers: {
+          headers: {
             Authorization: accessToken
           }
         }
@@ -44,6 +46,7 @@ export default function App() {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
             keyid: razorPayKeyId,
+            courseid: courseid,
         }
         handlePayment(data)
       },
@@ -52,7 +55,10 @@ export default function App() {
           "contact": "5555555555",
       },
       "notes": {
-          "address": "Razorpay Corporate Office"
+          "address": "Razorpay Corporate Office", 
+          "mobile": "5555555555",
+          "courseid": courseid,
+          "coursetype": coursetype,
       },
       "theme": {
           "color": "#3399cc",
@@ -70,13 +76,15 @@ export default function App() {
         "http://localhost/multeartsapi/api/payment/create-payment.php",
         data,
         {
+          headers: {
           Authorization: accessToken
+          }
         }
       );
 
       console.log("response", response);
 
-      initPayment(response);
+      initPayment(response?.data?.data);
     } catch (error) {
       console.log("error", error);
     }
@@ -85,8 +93,8 @@ export default function App() {
   const createPayment = () => {
     const data = {
       keyid: razorPayKeyId,
-      courseid: 4,
-      coursetype: "demo"
+      courseid,
+      coursetype
     };
 
     createOrder(data);

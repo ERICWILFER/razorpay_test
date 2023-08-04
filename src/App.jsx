@@ -12,7 +12,7 @@ export default function App() {
     console.log("handlePayment data:", data);
     try {
       const response = await axios.post(
-        "http://localhost/multeartsapi/api/payment/verify-payment.php",
+        "http://localhost/multeartsapi/api/payment/verify-course-payment.php",
         data,
         {
           headers: {
@@ -73,7 +73,7 @@ export default function App() {
   const createOrder = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost/multeartsapi/api/payment/create-payment.php",
+        "http://localhost/multeartsapi/api/payment/create-course-payment.php",
         data,
         {
           headers: {

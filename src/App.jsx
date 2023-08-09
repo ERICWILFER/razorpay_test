@@ -2,7 +2,7 @@ import './App.css'
 import axios from "axios";
 
 const razorPayKeyId = "rzp_test_8nN58e8ffLtkXT";
-const accessToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUSEVfSVNTVUVSIiwiYXVkIjoiVEhFX0FVRElFTkNFIiwiaWF0IjoxNjkxNTA5MzA2LCJuYmYiOjE2OTE1MDkzMDYsImV4cCI6MTY5MTUxMjkwNiwiZGF0YSI6eyJ1c2VyaWQiOiIwIiwicmVmaWQiOiJTVFVEMzI5ODQ2IiwidXNlcnR5cGUiOiJzdXBlcl9hZG1pbiIsInVzZXJuYW1lIjoic3VwZXJfYWRtaW4iLCJtb2JpbGUiOiI1NTU1NTU1NTU1Iiwicm9sZSI6InN1cGVyX2FkbWluIiwic2Nob29saWQiOiJBTFBINTEyNzgwIn19.qvlaQKxiHGkMIS0Xzg4VQJESoLMhEfVAq2MSZN7m6_Q"
+const accessToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUSEVfSVNTVUVSIiwiYXVkIjoiVEhFX0FVRElFTkNFIiwiaWF0IjoxNjkxNTc3NTUzLCJuYmYiOjE2OTE1Nzc1NTMsImV4cCI6MTY5MTU4MTE1MywiZGF0YSI6eyJ1c2VyaWQiOiIwIiwicmVmaWQiOiJTVFVEMzI5ODQ2IiwidXNlcnR5cGUiOiJzdXBlcl9hZG1pbiIsInVzZXJuYW1lIjoic3VwZXJfYWRtaW4iLCJtb2JpbGUiOiI1NTU1NTU1NTU1Iiwicm9sZSI6InN1cGVyX2FkbWluIiwic2Nob29saWQiOiJBTFBINTEyNzgwIn19.c0YA3-R_Y48ait7CXJyWKzE-qUxJ8elHYbg5sQ2w5Rw"
 const courseid = 7;
 const coursetype = "advanced";
 
@@ -19,7 +19,7 @@ const ProductPayment = () => {
     console.log("handlePayment data:", data);
     try {
       const response = await axios.post(
-        "http://localhost/multeartsapi/api/payment/verify-product-payment.php",
+        "http://localhost/multeartsapi/api/payment/verify-products-payment.php",
         data,
         {
           headers: {
@@ -66,6 +66,7 @@ const ProductPayment = () => {
           "mobile": "5555555555",
           "courseid": courseid,
           "coursetype": coursetype,
+          "paymenttype": "products",
       },
       "theme": {
           "color": "#3399cc",
@@ -80,7 +81,7 @@ const ProductPayment = () => {
   const createOrder = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost/multeartsapi/api/payment/create-product-payment.php",
+        "http://localhost/multeartsapi/api/payment/create-products-payment.php",
         data,
         {
           headers: {
@@ -165,6 +166,7 @@ const ProductPayment = () => {
 //           "mobile": "5555555555",
 //           "courseid": courseid,
 //           "coursetype": coursetype,
+//           "paymenttype": "course",
 //       },
 //       "theme": {
 //           "color": "#3399cc",

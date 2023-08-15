@@ -3,12 +3,13 @@ import axios from "axios";
 
 const razorPayKeyId = "rzp_test_8nN58e8ffLtkXT";
 const accessToken =
-  "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUSEVfSVNTVUVSIiwiYXVkIjoiVEhFX0FVRElFTkNFIiwiaWF0IjoxNjkyMDM5NDg3LCJuYmYiOjE2OTIwMzk0ODcsImV4cCI6MTY5MjA0MzA4NywiZGF0YSI6eyJ1c2VyaWQiOiIwIiwicmVmaWQiOiJTVFVEMzI5ODQ2IiwidXNlcnR5cGUiOiJzdXBlcl9hZG1pbiIsInVzZXJuYW1lIjoiU3R1ZGVudCBBZG1pbiIsIm1vYmlsZSI6IjU1NTU1NTU1NTUiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJzY2hvb2xpZCI6IkFMUEg1MTI3ODAifX0.adCbyCkqgq6U7_vgFZjjDwvppO5zTF7YN0kAVFFsJ4s";
-const courseid = 7;
-const coursetype = "beginner";
+  "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUSEVfSVNTVUVSIiwiYXVkIjoiVEhFX0FVRElFTkNFIiwiaWF0IjoxNjkyMDg1Mjk0LCJuYmYiOjE2OTIwODUyOTQsImV4cCI6MTY5MjA4ODg5NCwiZGF0YSI6eyJ1c2VyaWQiOiIwIiwicmVmaWQiOiJTVFVEMzI5ODQ2IiwidXNlcnR5cGUiOiJzdXBlcl9hZG1pbiIsInVzZXJuYW1lIjoiU3R1ZGVudCBBZG1pbiIsIm1vYmlsZSI6IjU1NTU1NTU1NTUiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJzY2hvb2xpZCI6IkFMUEg1MTI3ODAifX0.RB4NOccOv621os-0xF3rq6eXOeszN2MKihX6hKIinRQ";
+// const courseid = 7;
+// const coursetype = "beginner";
 const mobile = "5555555555"; // school login mobile
 const cartid = "142142424242";
 const username = "Student Admin";
+const address = "456 Elm Avenue, Willowbrook, Meadowland, 54321";
 
 export default function App() {
   return (
@@ -65,7 +66,7 @@ export default function App() {
 //         contact: mobile,
 //       },
 //       notes: {
-//         address: "Razorpay Corporate Office",
+//         address: address,
 //         username: username,
 //         mobile: mobile,
 //         courseid: courseid,
@@ -157,7 +158,6 @@ const ProductPayment = () => {
           razorpay_order_id: response.razorpay_order_id,
           razorpay_signature: response.razorpay_signature,
           keyid: razorPayKeyId,
-          courseid: courseid,
         };
         handlePayment(data);
       },
@@ -166,11 +166,9 @@ const ProductPayment = () => {
         contact: mobile,
       },
       notes: {
-        address: "Razorpay Corporate Office",
+        address: address,
         username: username,
         mobile: mobile,
-        courseid: courseid,
-        coursetype: coursetype,
         paymenttype: "products",
       },
       theme: {
